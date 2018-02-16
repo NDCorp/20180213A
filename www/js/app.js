@@ -1,5 +1,13 @@
 // Ionic Starter App
 
+
+//device ready event to execcute when the device is ready 
+document.addEventListener("deviceready", function(){
+
+  alert("Device Ready " + JSON.stringify(navigator.camera)); 
+
+}, false);
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -7,17 +15,25 @@ angular.module('starter', ['ionic'])
 
 //Add a controller that will contain function you may call in index.html
 .controller("takePicture", function($scope, $http){
+  $scope.model = {};
+  $scope.model.imageSource = "../img/ionic.png"; //default image
+
   $scope.takePhoto = function() {
-    alert("Pragna");
+    alert("Taking a picture");
     // Take picture using device camera and retrieve image as base64-encoded string
     navigator.camera.getPicture(function(imageData){
       alert(imageData);
+      //$scope.model.imageSource = imageData;
+      // console.log(JSON.stringify(imageData));
+   	  // Get image handle
+      var newImage = document.getElementById('newImage');
+      newImage.src = imageData;
     },
     function(message) {
       console.log(message);
 
     },
-    { quality: 50 });
+    { quality: 30 });
   }
 
 })
