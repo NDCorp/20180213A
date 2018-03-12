@@ -1,7 +1,7 @@
 // Ionic Starter App
 
 
-//device ready event to execcute when the device is ready 
+//device ready event to execute when the device is ready, injected by cordova.js file 
 document.addEventListener("deviceready", function(){
 
   alert("Device Ready " + JSON.stringify(navigator.camera)); 
@@ -22,18 +22,20 @@ angular.module('starter', ['ionic'])
     alert("Taking a picture");
     // Take picture using device camera and retrieve image as base64-encoded string
     navigator.camera.getPicture(function(imageData){
-      alert(imageData);
-      //$scope.model.imageSource = imageData;
+      //alert(imageData);
+      $http.get(imageData).then(function(oData) {
+        alert(oData);
+      });
+
+      $scope.model.imageSource = imageData;
+      $scope.$apply();  //Alert Angular that this is a callback
       // console.log(JSON.stringify(imageData));
-   	  // Get image handle
-      var newImage = document.getElementById('newImage');
-      newImage.src = imageData;
     },
     function(message) {
       console.log(message);
 
     },
-    { quality: 30 });
+    { quality: 100 });
   }
 
 })

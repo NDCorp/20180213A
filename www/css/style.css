@@ -1,1 +1,14 @@
 /* Empty. Add your own CSS if you like */
+button
+{
+    margin: 1em 1%;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.imgStyle
+{
+    display: block;
+    width: 94%;
+    margin: 1em 2%;
+    border-radius: 20px;
+}
